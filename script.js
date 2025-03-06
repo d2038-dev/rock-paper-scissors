@@ -26,8 +26,10 @@ function playRound(humanChoice, computerChoice) {
     console.log("It's a tie");
   } else if (winner === "human") {
     console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+    humanScore++;
   } else if (winner === "computer") {
     console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+    computerScore++;
   }
 }
 
