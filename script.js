@@ -4,13 +4,16 @@ function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
-  for (let index = 0; index < 5; index++) {
-    let humanChoice = getHumanChoice();
-    let computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
-  }
+  const buttons = document.querySelectorAll(".btn");
 
-  printResults(humanScore, computerScore);
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      let humanChoice = e.target.textContent.toLowerCase();
+      let computerChoice = getComputerChoice();
+      playRound(humanChoice, computerChoice);
+      printResults(humanScore, computerScore);
+    });
+  });
 
   function playRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.toLowerCase();
