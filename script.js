@@ -1,10 +1,13 @@
+const buttons = document.querySelectorAll(".btn");
+const displayResults = document.querySelector(".display-results");
+const displayScore = displayResults.childNodes[1];
+const displayMessage = displayResults.childNodes[3];
+
 playGame();
 
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
-
-  const buttons = document.querySelectorAll(".btn");
 
   buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -22,16 +25,19 @@ function playGame() {
 
     humanChoice = capitalize(humanChoice);
     computerChoice = capitalize(computerChoice);
+    let roundResults = "";
 
     if (winner === "tie") {
-      console.log("It's a tie");
+      roundResults = "It's a tie";
     } else if (winner === "human") {
-      console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+      roundResults = `You win! ${humanChoice} beats ${computerChoice}`;
       humanScore++;
     } else if (winner === "computer") {
-      console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+      roundResults = `You lose! ${computerChoice} beats ${humanChoice}`;
       computerScore++;
     }
+
+    displayMessage.textContent = roundResults;
   }
 }
 
@@ -73,12 +79,16 @@ function capitalize(word) {
 }
 
 function printResults(humanScore, computerScore) {
-  console.log(`Player: ${humanScore} - Computer: ${computerScore}`);
+  let finalScore = `Player: ${humanScore} - Computer: ${computerScore}`;
+  let finalMessage = "";
   if (humanScore === computerScore) {
-    console.log("It's a tie");
+    finalMessage = "It's a tie";
   } else if (humanScore > computerScore) {
-    console.log("Player wins!");
+    finalMessage = "Player wins!";
   } else {
-    console.log("Computer wins!");
+    finalMessage = "Computer wins!";
   }
+
+  displayScore.textContent = finalScore;
+  displayMessage.textContent = finalMessage;
 }
