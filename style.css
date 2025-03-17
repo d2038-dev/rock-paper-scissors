@@ -12,6 +12,7 @@ body {
   line-height: 1.5;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 24px;
+  color: #40413b;
 }
 
 img {
@@ -37,6 +38,10 @@ button {
   align-items: center;
   text-align: center;
   gap: 30px;
+  border: 10px solid #d9dfc6;
+  padding: 40px;
+  border-radius: 20px;
+  background-color: #eff3ea;
 }
 
 .game__title {
@@ -55,4 +60,9 @@ button {
 
 .game__choice {
   max-width: 200px;
+}
+
+.game__choice:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
