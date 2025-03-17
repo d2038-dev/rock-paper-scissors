@@ -1,5 +1,5 @@
-const buttons = document.querySelectorAll(".btn");
-const displayResults = document.querySelector(".display-results");
+const buttons = document.querySelectorAll("[data-btn-id]");
+const displayResults = document.querySelector("[data-id='display-results']");
 const displayScore = displayResults.childNodes[1];
 const displayMessage = displayResults.childNodes[3];
 
@@ -14,7 +14,7 @@ function playGame() {
   });
 
   function handleClick(e) {
-    let humanChoice = e.target.textContent.toLowerCase();
+    let humanChoice = e.target.dataset.btnId;
     let computerChoice = getComputerChoice();
     playRound(humanChoice, computerChoice);
     if (humanScore == 5 || computerScore == 5) {
