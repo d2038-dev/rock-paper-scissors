@@ -66,3 +66,13 @@ button {
   cursor: pointer;
   transform: scale(1.1);
 }
+
+.game__play-again-btn {
+  border: 5px solid #40413b;
+  border-radius: 12px;
+  padding: 5px 15px;
+}
+
+.game__play-again-btn_hidden {
+  visibility: hidden;
+}
