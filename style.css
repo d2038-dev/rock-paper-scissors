@@ -62,7 +62,8 @@ button {
   max-width: 200px;
 }
 
-.game__choice:hover {
+.game__play-again-btn:hover,
+.game__choice_hover:hover {
   cursor: pointer;
   transform: scale(1.1);
 }

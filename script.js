@@ -1,7 +1,8 @@
-const buttons = document.querySelectorAll("[data-btn-id]");
+const choicesButtons = document.querySelectorAll("[data-btn-id]");
 const displayResults = document.querySelector("[data-id='display-results']");
 const displayScore = displayResults.childNodes[1];
 const displayMessage = displayResults.childNodes[3];
+const playAgainButton = document.querySelector("[data-id='play-again-btn']");
 
 playGame();
 
@@ -9,19 +10,36 @@ function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
-  buttons.forEach((button) => {
+  choicesButtons.forEach((button) => {
     button.addEventListener("click", handleClick);
+    button.classList.add("game__choice_hover");
   });
+
+  playAgainButton.addEventListener("click", resetGame);
+
+  function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
+    displayScore.textContent = "";
+    displayMessage.textContent = "";
+    playAgainButton.classList.add("game__play-again-btn_hidden");
+    choicesButtons.forEach((button) => {
+      button.addEventListener("click", handleClick);
+      button.classList.add("game__choice_hover");
+    });
+  }
 
   function handleClick(e) {
     let humanChoice = e.target.dataset.btnId;
     let computerChoice = getComputerChoice();
     playRound(humanChoice, computerChoice);
     if (humanScore == 5 || computerScore == 5) {
-      printResults(humanScore, computerScore);
-      buttons.forEach((button) => {
+      choicesButtons.forEach((button) => {
         button.removeEventListener("click", handleClick);
+        button.classList.remove("game__choice_hover");
       });
+      printResults(humanScore, computerScore);
+      playAgainButton.classList.remove("game__play-again-btn_hidden");
     }
   }
 
@@ -58,12 +76,6 @@ function getComputerChoice() {
   return choice;
 }
 
-// function getHumanChoice() {
-//   const choice = prompt("rock, paper, scissors?");
-
-//   return choice;
-// }
-
 function getWinner(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
     return "tie";
@@ -88,7 +100,6 @@ function capitalize(word) {
 }
 
 function printResults(humanScore, computerScore) {
-  // let finalScore = `Player: ${humanScore} - Computer: ${computerScore}`;
   let finalMessage = "";
   if (humanScore > computerScore) {
     finalMessage = "Player wins!";
@@ -96,6 +107,5 @@ function printResults(humanScore, computerScore) {
     finalMessage = "Computer wins!";
   }
 
-  // displayScore.textContent = finalScore;
   displayMessage.textContent = finalMessage;
 }
